@@ -1,0 +1,266 @@
+<Window x:Class="DiscordWPF.MainWindow"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:v="clr-namespace:DiscordWPF.Visual"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DiscordWPF"
+        mc:Ignorable="d" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp"
+        Title="DSTX - Graphics Edition" Height="450" Width="800">
+    <Grid>
+        <Grid x:Name="main">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="48"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="192"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="44"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="48"/>
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="userstatus" Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="45"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.Background>
+                            <SolidColorBrush Color="#2A2C31"/>
+                        </Grid.Background>
+                        <Rectangle Width="27" Height="27" RadiusX="14" RadiusY="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Rectangle.Fill>
+                                <ImageBrush x:Name="useravatar"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Border Height="11" Width="11" VerticalAlignment="Bottom" HorizontalAlignment="Right" BorderBrush="#2A2C31" BorderThickness="1" CornerRadius="5.5" Margin="10"/>
+                        <Rectangle Width="9" Height="9" RadiusX="4.5" RadiusY="4.5" Margin="11" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="#43B581" x:Name="statusColor"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="userid" Grid.Column="2" VerticalAlignment="Bottom" FontSize="10" HorizontalAlignment="Left" Foreground="White"/>
+                                <TextBlock Text="BOT" Margin="2,4" x:Name="usertype" Foreground="White" Background="#7289DA" VerticalAlignment="Bottom" FontSize="6" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <TextBlock x:Name="userdisc" VerticalAlignment="Top" Grid.Row="1" FontSize="8" HorizontalAlignment="Left" Foreground="#626367"/>
+                        </Grid>
+                        <Button Opacity="0.001" Grid.ColumnSpan="2" Click="Button_Click_1" x:Name="actions"/>
+                    </Grid>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                        <StackPanel x:Name="channels" Background="#2F3136"/>
+                    </ScrollViewer>
+                    <Rectangle Fill="#2F3136">
+                        <Rectangle.Effect>
+                            <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="-100" Opacity="0.5"/>
+                        </Rectangle.Effect>
+                    </Rectangle>
+                    <TextBlock x:Name="servername" VerticalAlignment="Center" Foreground="White" FontWeight="Light"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Rectangle Grid.Column="1" Fill="#36393F">
+                        <Rectangle.Effect>
+                            <DropShadowEffect BlurRadius="1" ShadowDepth="1" Direction="-100" Opacity="0.5"/>
+                        </Rectangle.Effect>
+                    </Rectangle>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Path x:Name="visualChannelType" Stroke="#8A8E94" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8" StrokeThickness="1">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathFigure StartPoint="8,0">
+                                        <LineSegment Point="2,16"/>
+                                    </PathFigure>
+                                    <PathFigure StartPoint="14,0">
+                                        <LineSegment Point="8,16"/>
+                                    </PathFigure>
+                                    <PathFigure StartPoint="0,5">
+                                        <LineSegment Point="16,5"/>
+                                    </PathFigure>
+
+                                    <PathFigure StartPoint="0,11">
+                                        <LineSegment Point="16,11"/>
+                                    </PathFigure>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                        <TextBlock x:Name="channelname" Foreground="White" Margin="4" VerticalAlignment="Center" FontSize="12" FontWeight="Bold"/>
+                        <Rectangle Width="9" Height="9" Margin="6" RadiusX="4.5" RadiusY="4.5">
+                            <Rectangle.Fill>
+                                <SolidColorBrush x:Name="activedUserColor"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </StackPanel>
+                    <Grid Grid.Row="2">
+                        <Grid.Background>
+                            <SolidColorBrush Color="#36393F"/>
+                        </Grid.Background>
+                        <Rectangle x:Name="background" Fill="#484B51" Margin="18" RadiusX="4" RadiusY="4"/>
+                        <TextBox x:Name="tx" KeyDown="tx_KeyDown" KeyUp="tx_KeyUp" IsEnabled="True" Grid.Row="2" Grid.Column="1" Margin="67,18" Background="#484B51" BorderBrush="#484B51" Foreground="White" SelectionBrush="#FF484B51"/>
+                        <TextBlock x:Name="ac" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Text="You cannot sent messages because you cake"/>
+                        <StackPanel VerticalAlignment="Bottom" Visibility="Hidden" x:Name="typingStack" Orientation="Horizontal" Margin="18,0">
+                            <Rectangle x:Name="st1" Fill="White" Width="7" Margin="4,1,2,0" Height="7" RadiusX="3.5" RadiusY="3.5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <Rectangle x:Name="st2" Fill="White" Width="7" Margin="0,1,2,0" Height="7" RadiusX="3.5" RadiusY="3.5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <Rectangle x:Name="st3" Fill="White" Width="7" Margin="0,1,4,0" Height="7" RadiusX="3.5" RadiusY="3.5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="typingText" VerticalAlignment="Center" Text="sdsdsd are typing" Foreground="White"/>
+                        </StackPanel>
+                    </Grid>
+                    <ScrollViewer x:Name="scrView" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="messagelist" Background="#36393E"/>
+                    </ScrollViewer>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="44"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="85"/>
+                    </Grid.RowDefinitions>
+                </Grid>
+            </Grid>
+            <StackPanel x:Name="servers" Orientation="Vertical" MouseEnter="servers_MouseEnter" MouseLeave="servers_MouseLeave" HorizontalAlignment="Left" Width="48" Background="White" Grid.ColumnSpan="2"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+            </Grid>
+            <Grid x:Name="voicegrid" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="mute" Grid.Row="2" Content="Mute" Visibility="Hidden" IsEnabled="False" Click="mute_Click"/>
+                <Button x:Name="deafan" Grid.Column="1" Content="Deafan" Visibility="Hidden" IsEnabled="False" Click="deafan_Click"/>
+                <Button x:Name="join" Grid.Column="2" Content="Join" Visibility="Hidden" IsEnabled="False" Click="join_Click"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="menus" Visibility="Hidden">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" x:Name="menus_bg"/>
+            </Grid.Background>
+            <Grid x:Name="server_s" Height="336" Width="432">
+                <Rectangle RadiusX="3" RadiusY="3">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="White" x:Name="servers_bg"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Grid Visibility="Visible" x:Name="main_servers" Width="361" Height="291">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="226"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Oh,another server huh." Foreground="#657EC8" FontSize="14" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Path VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5.5" Stroke="#DBDEDD" StrokeThickness="1">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathFigure StartPoint="155,0" IsClosed="True">
+                                        <BezierSegment Point1="155,0" Point2="157,0" Point3="157,2"/>
+                                        <LineSegment Point="157,78"/>
+                                        <BezierSegment Point1="157,78" Point2="142,90" Point3="157,102"/>
+                                        <LineSegment Point="157,210"/>
+                                        <BezierSegment Point1="157,210" Point2="157,212" Point3="155,212"/>
+                                        <LineSegment Point="2,212"/>
+                                        <BezierSegment Point1="2,212" Point2="0,212" Point3="0,210"/>
+                                        <LineSegment Point="0,2"/>
+                                        <BezierSegment Point1="0,2" Point2="0,0" Point3="2,0"/>
+                                    </PathFigure>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                        <Path VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Margin="5.5" Stroke="#DBDEDD" StrokeThickness="1">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathFigure StartPoint="2,0" IsClosed="True">
+                                        <BezierSegment Point1="2,0" Point2="0,0" Point3="0,2"/>
+                                        <LineSegment Point="0,78"/>
+                                        <BezierSegment Point1="0,78" Point2="15,90" Point3="0,102"/>
+                                        <LineSegment Point="0,210"/>
+                                        <BezierSegment Point1="0,210" Point2="0,212" Point3="2,212"/>
+                                        <LineSegment Point="155,212"/>
+                                        <BezierSegment Point1="155,212" Point2="157,212" Point3="157,210"/>
+                                        <LineSegment Point="157,2"/>
+                                        <BezierSegment Point1="157,2" Point2="157,0" Point3="155,0"/>
+                                    </PathFigure>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                        <TextBlock Text="or" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="4,-4,4,29" Foreground="#DBDEDD"/>
+                        <Grid Width="157" Height="212" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5.5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="48"/>
+                                <RowDefinition/>
+                                <RowDefinition Height="48"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Create" Foreground="#657AC6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Foreground="#B4BCC3" VerticalAlignment="Top" TextWrapping="WrapWithOverflow" Grid.Row="1" FontSize="8" HorizontalAlignment="Center">
+                                <TextBlock.Text>
+                                    Create a new server and invite your firends! Thats Free!
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <v:DefaultButton Grid.Row="2" ButtonFill="Blue" Height="31" Text="Create a server" FontSize="10" Width="144"/>
+                        </Grid>
+                        <Grid Width="157" Height="212" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Margin="5.5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="48"/>
+                                <RowDefinition/>
+                                <RowDefinition Height="48"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Join" Foreground="#43B581" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Foreground="#B4BCC3" VerticalAlignment="Top" TextWrapping="WrapWithOverflow" Grid.Row="1" FontSize="8" HorizontalAlignment="Center">
+                                <TextBlock.Text>
+                                    Join to new servers with an invite or code link.
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <v:DefaultButton Grid.Row="2" ButtonFill="Green" Height="31" Text="Join a server" FontSize="10" Width="144"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid x:Name="create_server" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="52"/>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="59"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="CREATE YOUR SERVER" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" Foreground="#8095DE"/>
+                </Grid>
+                <Grid x:Name="join_server" Visibility="Hidden" Height="336" Width="432">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="64"/>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="58"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Join a server" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" Foreground="#43B581"/>
+                    <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="10" Foreground="#A3ABB4" Grid.Row="1">
+                        Enter an invite bellow to join an existing server. The invite will look something like these:
+                    </TextBlock>
+                    <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="8" Foreground="#7289DA" Grid.Row="2">
+                        AbC456
+                        https://discord.gg/AbC456
+                        https://discord.gg/server-nitroizated
+                    </TextBlock>
+                    <TextBox Grid.Row="2" VerticalAlignment="Center"/>
+                    <Rectangle Grid.Row="3" RadiusX="3" Height="1000" VerticalAlignment="Bottom" Fill="#11000000"/>
+                    <Button Content="Join" Grid.Row="3" Width="77" Height="31" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="32,0"/>
+                    <Button Content="Back" Grid.Row="3" Width="77" Height="31" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="32,0"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

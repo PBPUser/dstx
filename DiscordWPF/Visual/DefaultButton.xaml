@@ -1,0 +1,25 @@
+<UserControl x:Class="DiscordWPF.Visual.DefaultButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DiscordWPF.Visual"
+             mc:Ignorable="d" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" MouseDown="TextBlock_MouseDown" MouseUp="UserControl_MouseUp"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid  MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" MouseDown="TextBlock_MouseDown" MouseUp="UserControl_MouseUp">
+        <Border BorderThickness="1" CornerRadius="1" MouseDown="TextBlock_MouseDown" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" MouseUp="UserControl_MouseUp">
+            <Border.Background>
+                <SolidColorBrush x:Name="background"/>
+            </Border.Background>
+            <Border.BorderBrush>
+                <SolidColorBrush x:Name="borderbrush"/>
+            </Border.BorderBrush>
+        </Border>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" MouseDown="TextBlock_MouseDown" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" MouseUp="UserControl_MouseUp" Text="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:DefaultButton}},Path=Text}">
+            <TextBlock.Foreground>
+                <SolidColorBrush x:Name="foreground" Color="White"/>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <Rectangle Fill="#01000000" MouseDown="TextBlock_MouseDown" MouseUp="UserControl_MouseUp" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave"/>
+    </Grid>
+</UserControl>
