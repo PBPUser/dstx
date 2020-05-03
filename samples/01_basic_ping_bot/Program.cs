@@ -39,7 +39,7 @@ namespace _01_basic_ping_bot
         public async Task MainAsync()
         {
             // Tokens should be considered secret data, and never hard-coded.
-            await _client.LoginAsync(TokenType.Bot, "NjUxMzQyOTIyMzk4MDQwMDc0.Xqqodw.DVKXFmt-sVs9qnn2LSfMQu6ndfk");
+            await _client.LoginAsync(TokenType.Bot, "pOsHeL_NaHuI");
             await _client.StartAsync();
 
             // Block the program until it is closed.
